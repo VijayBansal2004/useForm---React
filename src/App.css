@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #202020;
+    color: white;
+}
+/* .main{
+    min-height: 100vh;
+    display: grid;
+    place-content:center;
+} */
+.container{
+    max-width: 700px !important;
+}
+
+.error{
+    color: red;
+}
+.password-eye{
+    left: -30px;
+    top: 10px;
+    filter: invert(1);
+    background-color: transparent;
+}
+button[type="submit"]{
+    display: block;
+    width: 20%;
+    margin: auto;
+}
+
+@media (max-width:500px){
+    button[type="submit"]{
+        width: 100%;
+    }
+}
