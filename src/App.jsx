@@ -1,8 +1,8 @@
 import "./App.css";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 // React icons
@@ -53,7 +53,7 @@ function App() {
                   },
                 })}
               />
-              <span className="error">{errors.firstName?.message}</span>
+              <span className="error">{errors.name.firstName?.message}</span>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
@@ -73,7 +73,7 @@ function App() {
                   },
                 })}
               />
-              <span className="error">{errors.lastName?.message}</span>
+              <span className="error">{errors.name.lastName?.message}</span>
             </Form.Group>
           </Row>
 
@@ -148,7 +148,7 @@ function App() {
                 },
               })}
             />
-            <span className="error">{errors.address?.message}</span>
+            <span className="error">{errors.address.address?.message}</span>
           </Form.Group>
 
           <Row className="mb-3">
@@ -163,7 +163,7 @@ function App() {
                   },
                 })}
               />
-              <span className="error">{errors.city?.message}</span>
+              <span className="error">{errors.address.city?.message}</span>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridZip">
@@ -182,7 +182,7 @@ function App() {
                   },
                 })}
               />
-              <span className="error">{errors.pinCode?.message}</span>
+              <span className="error">{errors.address.pinCode?.message}</span>
             </Form.Group>
           </Row>
 
