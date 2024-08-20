@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 // React icons
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const form = useForm();
@@ -15,9 +15,14 @@ function App() {
   const {
     register,
     control,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit, reset,
+    formState: { errors, isSubmitSuccessful },
   } = form;
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful]);
 
   // console.log(form);
 
@@ -29,7 +34,6 @@ function App() {
   const onhandleEyeClick = () => {
     setpasswordEye(!passwordEye);
   };
-
   return (
     <>
       <div className="container">
