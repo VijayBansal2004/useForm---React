@@ -45,15 +45,18 @@ function App() {
                 {...register("name.firstName", {
                   required: {
                     value: true,
-                    message: "Please Enter your First name",
+                    message: "Please Enter your First name!",
                   },
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ'’-]{3,}$/,
-                    message: "Name must contain(A-Z,a-z) and minimum length(3)",
+                    message: "Name must contain(A-Z,a-z) and minimum length(3)!",
                   },
+                  // validate: (value) => {
+                  //   return value === "admin" && `This ${value} is block, Please enter another name!`
+                  // },
                 })}
               />
-              <span className="error">{errors.name.firstName?.message}</span>
+              <span className="error">{errors.name?.firstName?.message}</span>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
@@ -65,15 +68,64 @@ function App() {
                 {...register("name.lastName", {
                   required: {
                     value: true,
-                    message: "Please enter your Last name",
+                    message: "Please enter your Last name!",
                   },
                   pattern: {
                     value: /^[A-Za-zÀ-ÖØ-öø-ÿ'’-]{3,}$/,
-                    message: "Name must contain(A-Z,a-z) and minimum length(3)",
+                    message: "Name must contain(A-Z,a-z) and minimum length(3)!",
+                  },
+
+                  // validate: (value) => {
+                  //   return value === "admin" && `This ${value} is blocked, Please enter another name!`
+                  // },
+                })}
+              />
+              <span className="error">{errors.name?.lastName?.message}</span>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="dob">
+              <Form.Label>DOB</Form.Label>
+              <Form.Control
+                type="date"
+                name="dob"
+                placeholder="Enter date of birth"
+                {...register("DOB", {
+                  valueAsDate: true,
+                  required: {
+                    value: true,
+                    message: "Please Enter your date of birth!",
+                  },
+                  pattern: {
+                    value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
+                    message: "Please enter date in correct formet!",
                   },
                 })}
               />
-              <span className="error">{errors.name.lastName?.message}</span>
+              <span className="error">{errors.DOB?.message}</span>
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="mobileNumber">
+              <Form.Label>Mobile number</Form.Label>
+              <Form.Control
+                type="number"
+                name="mobileNumber"
+                min={0}
+                placeholder="Enter mobile number"
+                {...register("mobileNumber", {
+                  // valueAsNumber: true,
+                  required: {
+                    value: true,
+                    message: "Please Enter your mobile number!",
+                  },
+                  pattern: {
+                    value: /^\d{10}$/,
+                    message: "Mobile number must have 10 digits!",
+                  },
+                })}
+              />
+              <span className="error">{errors.mobileNumber?.message}</span>
             </Form.Group>
           </Row>
 
@@ -84,19 +136,22 @@ function App() {
                 type="email"
                 name="email"
                 placeholder="Enter email"
-                {...register("email", {
+                {...register("email.email", {
                   required: {
                     value: true,
-                    message: "Please enter your Email",
+                    message: "Please enter your Email!",
                   },
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message:
-                      "Name must contain email name(A-Z,a-z,0-9,_%+-) and domain name @(A-Z,a-z,0-9,.-) and minimum length(3)",
+                      "Name must contain email name(A-Z,a-z,0-9,_%+-) and domain name @(A-Z,a-z,0-9,.-) and minimum length(3)!",
                   },
+                  // validate: (value) => {
+                  //   return value === "admin123@gmail.com" && `This ${value} is blocked, Please enter another email!`
+                  // },
                 })}
               />
-              <span className="error">{errors.email?.message}</span>
+              <span className="error">{errors.email?.email?.message}</span>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
@@ -105,19 +160,22 @@ function App() {
                 <Form.Control
                   type={passwordEye ? "text" : "password"}
                   name="password"
-                  placeholder="Password"
+                  placeholder="Enter password"
                   className="z-0"
-                  {...register("password", {
+                  {...register("email.password", {
                     required: {
                       value: true,
-                      message: "Please enter your Password",
+                      message: "Please enter your Password!",
                     },
                     pattern: {
                       value:
                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                       message:
-                        "Please enter a valid Password containing(a-z,A-Z,0-9,@$!%*?&) and minimum length(8)",
+                        "Please enter a valid Password containing(a-z,A-Z,0-9,@$!%*?&) and minimum length(8)!",
                     },
+                    // validate: (value) => {
+                    //   return value === "Admin@123" && `This ${value} is blocked, Please enter another password!`
+                    // },
                   })}
                 />
                 {passwordEye ? (
@@ -132,23 +190,23 @@ function App() {
                   />
                 )}
               </div>
-              <span className="error">{errors.password?.message}</span>
+              <span className="error">{errors.email?.password?.message}</span>
             </Form.Group>
           </Row>
 
           <Form.Group className="mb-3" controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
             <Form.Control
-              placeholder="1234 Main St"
+              placeholder="Enter your address"
               name="address"
               {...register("address.address", {
                 required: {
                   value: true,
-                  message: "Please enter your Address",
+                  message: "Please enter your Address!",
                 },
               })}
             />
-            <span className="error">{errors.address.address?.message}</span>
+            <span className="error">{errors.address?.address?.message}</span>
           </Form.Group>
 
           <Row className="mb-3">
@@ -156,33 +214,35 @@ function App() {
               <Form.Label>City</Form.Label>
               <Form.Control
                 name="city"
+                placeholder="Enter your city"
                 {...register("address.city", {
                   required: {
                     value: true,
-                    message: "Please enter your City",
+                    message: "Please enter your City!",
                   },
                 })}
               />
-              <span className="error">{errors.address.city?.message}</span>
+              <span className="error">{errors.address?.city?.message}</span>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridZip">
-              <Form.Label>PinCod</Form.Label>
+              <Form.Label>PinCode</Form.Label>
               <Form.Control
                 name="pinCode"
+                placeholder="Enter your Pincode"
                 {...register("address.pinCode", {
                   required: {
                     value: true,
-                    message: "Please Enter your PinCode",
+                    message: "Please Enter your PinCode!",
                   },
                   pattern: {
                     value: /^[0-9]{6}$/,
                     message:
-                      "Pincode length must be more than(6) and containing only(0-9)",
+                      "Pincode length must be more than(6) and containing only(0-9)!",
                   },
                 })}
               />
-              <span className="error">{errors.address.pinCode?.message}</span>
+              <span className="error">{errors.address?.pinCode?.message}</span>
             </Form.Group>
           </Row>
 
