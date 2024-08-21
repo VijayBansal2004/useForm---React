@@ -16,7 +16,7 @@ function App() {
     register,
     control,
     handleSubmit, reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful, isValid, isDirty },
   } = form;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
     }
   }, [isSubmitSuccessful]);
 
-  // console.log(form);
+  console.log(form);
 
   const formSubmit = (data) => {
     console.log(data);
@@ -50,6 +50,7 @@ function App() {
               <Form.Control
                 type="text"
                 name="firstName"
+                className={`${errors.name?.firstName?.message ? "invalid-feild" : "valid-feild"}`}
                 placeholder="Enter first name"
                 {...register("name.firstName", {
                   required: {
@@ -73,6 +74,8 @@ function App() {
               <Form.Control
                 type="text"
                 name="lastName"
+                className={`${errors.name?.lastName?.message ? "invalid-feild" : "valid-feild"}`}
+                // className={`invalid-feild ${isValid && "valid-feild"}`}
                 placeholder="Enter last name"
                 {...register("name.lastName", {
                   required: {
@@ -99,6 +102,7 @@ function App() {
               <Form.Control
                 type="date"
                 name="dob"
+                className={`${errors.DOB?.message ? "invalid-feild" : "valid-feild"}`}
                 placeholder="Enter date of birth"
                 {...register("DOB", {
                   valueAsDate: true,
@@ -121,6 +125,7 @@ function App() {
                 type="number"
                 name="mobileNumber"
                 min={0}
+                className={`${errors.mobileNumber?.message ? "invalid-feild" : "valid-feild"}`}
                 placeholder="Enter mobile number"
                 {...register("mobileNumber", {
                   // valueAsNumber: true,
@@ -144,6 +149,8 @@ function App() {
               <Form.Control
                 type="email"
                 name="email"
+                className={`${errors.email?.email?.message ? "invalid-feild" : "valid-feild"}`}
+
                 placeholder="Enter email"
                 {...register("email.email", {
                   required: {
@@ -170,7 +177,7 @@ function App() {
                   type={passwordEye ? "text" : "password"}
                   name="password"
                   placeholder="Enter password"
-                  className="z-0"
+                  className={`z-0 ${errors.email?.password?.message ? "invalid-feild" : "valid-feild"}`}
                   {...register("email.password", {
                     required: {
                       value: true,
@@ -208,6 +215,8 @@ function App() {
             <Form.Control
               placeholder="Enter your address"
               name="address"
+              className={`z-0 ${errors.address?.address?.message ? "invalid-feild" : "valid-feild"}`}
+
               {...register("address.address", {
                 required: {
                   value: true,
@@ -223,6 +232,8 @@ function App() {
               <Form.Label>City</Form.Label>
               <Form.Control
                 name="city"
+                className={`z-0 ${errors.address?.city?.message ? "invalid-feild" : "valid-feild"}`}
+
                 placeholder="Enter your city"
                 {...register("address.city", {
                   required: {
@@ -238,6 +249,7 @@ function App() {
               <Form.Label>PinCode</Form.Label>
               <Form.Control
                 name="pinCode"
+                className={`z-0 ${errors.address?.pinCode?.message ? "invalid-feild" : "valid-feild"}`}
                 placeholder="Enter your Pincode"
                 {...register("address.pinCode", {
                   required: {
@@ -255,7 +267,9 @@ function App() {
             </Form.Group>
           </Row>
           <Row className="d-flex align-items-center justify-content-center">
-            <Button variant="success" type="submit" className="mt-5 w-25 mx-3">
+            <Button variant="success" type="submit" className="mt-5 w-25 mx-3"
+            // disabled={!isValid}
+            >
               Submit
             </Button>
             <Button variant="info" type="button" className="mt-5 w-25 mx-3" onClick={handleResetForm}>
