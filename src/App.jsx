@@ -18,6 +18,7 @@ function App() {
     handleSubmit, reset,
     formState: { errors, isSubmitSuccessful },
   } = form;
+
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
@@ -29,6 +30,10 @@ function App() {
   const formSubmit = (data) => {
     console.log(data);
   };
+
+  const handleResetForm = () => {
+    reset();
+  }
 
   const [passwordEye, setpasswordEye] = useState(false);
   const onhandleEyeClick = () => {
@@ -249,10 +254,14 @@ function App() {
               <span className="error">{errors.address?.pinCode?.message}</span>
             </Form.Group>
           </Row>
-
-          <Button variant="primary" type="submit" className="mt-5">
-            Submit
-          </Button>
+          <Row className="d-flex align-items-center justify-content-center">
+            <Button variant="success" type="submit" className="mt-5 w-25 mx-3">
+              Submit
+            </Button>
+            <Button variant="info" type="button" className="mt-5 w-25 mx-3" onClick={handleResetForm}>
+              Reset
+            </Button>
+          </Row>
         </Form>
         <DevTool control={control} />
       </div>
