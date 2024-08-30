@@ -15,6 +15,18 @@
     max-width: 700px !important;
 }
 
+.form-container {
+    background-color: #ffffff08;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+
+
 .error {
     color: red;
 }
@@ -28,13 +40,23 @@
 
 button[type="submit"] {
     display: block;
-    width: 20%;
-    margin: auto;
+}
+
+.button-responsive {
+    width: 46% !important;
 }
 
 @media (max-width:500px) {
-    button[type="submit"] {
-        width: 100%;
+    .button-responsive {
+        width: 94% !important;
+    }
+}
+
+@media (max-width:400px) {
+    .form-container {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
     }
 }
 
